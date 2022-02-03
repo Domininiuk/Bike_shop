@@ -3,15 +3,10 @@ package com.example.bikeshop.adapters
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bikeshop.models.Bicycle
 
-class DisplayBicyclesAdapter() : RecyclerView.Adapter<DisplayBicyclesAdapter.BicycleViewHolder>()
+class DisplayBicyclesAdapter(val bicycles : List<Bicycle>) : RecyclerView.Adapter<DisplayBicyclesAdapter.BicycleViewHolder>()
 {
-
-
-    class BicycleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BicycleViewHolder {
         TODO("Not yet implemented")
     }
@@ -22,5 +17,9 @@ class DisplayBicyclesAdapter() : RecyclerView.Adapter<DisplayBicyclesAdapter.Bic
 
     override fun getItemCount(): Int {
         TODO("Not yet implemented")
+    }
+
+    class BicycleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
     }
 }
