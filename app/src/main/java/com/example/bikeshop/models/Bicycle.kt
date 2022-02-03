@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "bicycle_table")
 data class Bicycle(@PrimaryKey(autoGenerate = true) val id : Int= 0,
                    val name : String,
-                   val price : String,
+                   val price : Int,
                    val colour : String,
                    val brand : String
 )

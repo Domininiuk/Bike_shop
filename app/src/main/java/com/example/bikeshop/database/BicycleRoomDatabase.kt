@@ -59,10 +59,10 @@ abstract class  BicycleRoomDatabase : RoomDatabase() {
 
         suspend fun addDefaultValues(bicycleDao : BicycleDao)
         {
-            val bikeOne = Bicycle(name = "XC-1W", price = "999 zł", colour = "Purple", brand = "OXFELD")
-            val bikeTwo = Bicycle(name = "XC 879", price = "4099 zł", colour = "Red", brand = "SUPERIOR")
-            val bikeThree = Bicycle(name = "Belleco", price = "1449 zł", colour = "White", brand = "ROMET ")
-            val bikeFour = Bicycle(name = "F.L.Y. 27", price = "2699 zł", colour = "Pink", brand = "SUPERIOR  ")
+            val bikeOne = Bicycle(name = "XC-1W", price = 999, colour = "Purple", brand = "OXFELD")
+            val bikeTwo = Bicycle(name = "XC 879", price = 4099, colour = "Red", brand = "SUPERIOR")
+            val bikeThree = Bicycle(name = "Belleco", price = 1449, colour = "White", brand = "ROMET ")
+            val bikeFour = Bicycle(name = "F.L.Y. 27", price = 2699, colour = "Pink", brand = "SUPERIOR  ")
             bicycleDao.insertBike(bikeOne)
             bicycleDao.insertBike(bikeTwo)
             bicycleDao.insertBike(bikeThree)

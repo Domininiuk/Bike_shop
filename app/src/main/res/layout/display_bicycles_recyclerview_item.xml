@@ -3,90 +3,120 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="115dp"
         android:layout_height="130dp"
-        app:srcCompat="@android:drawable/ic_dialog_alert"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/name_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_dialog_alert" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/name_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/name_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="25dp" />
+        app:layout_constraintEnd_toStartOf="@+id/brand_label"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/brand_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="126dp"
+        android:text="@string/brand_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        tools:layout_editor_absoluteX="227dp"
-        tools:layout_editor_absoluteY="25dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
+        android:id="@+id/colour_label"
+        android:layout_width="65dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="14dp"
+        android:text="Colour"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="86dp" />
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
+        android:id="@+id/price_label"
+        android:layout_width="75dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="14dp"
+        android:text="@string/price_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        tools:layout_editor_absoluteX="227dp"
-        tools:layout_editor_absoluteY="86dp" />
+        app:layout_constraintStart_toEndOf="@+id/colour_label"
+        app:layout_constraintTop_toBottomOf="@+id/brand" />
 
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="48dp"
-        android:layout_height="35dp"
-        app:srcCompat="@drawable/ic_launcher_foreground"
-        tools:layout_editor_absoluteX="333dp"
-        tools:layout_editor_absoluteY="70dp" />
+        android:layout_height="48dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/price_label"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/colour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="117dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/colour_label" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="126dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="227dp"
-        tools:layout_editor_absoluteY="117dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/colour"
+        app:layout_constraintTop_toBottomOf="@+id/price_label" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="9dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="53dp" />
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/name_label" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/brand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="49dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="227dp"
-        tools:layout_editor_absoluteY="53dp" />
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintStart_toEndOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/brand_label" />
 </androidx.constraintlayout.widget.ConstraintLayout>
