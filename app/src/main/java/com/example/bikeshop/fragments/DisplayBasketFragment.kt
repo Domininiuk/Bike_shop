@@ -9,17 +9,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bikeshop.adapters.DisplayBasketAdapter
-import com.example.bikeshop.database.BicycleApplication
 import com.example.bikeshop.databinding.DisplayBasketFragmentBinding
 import com.example.bikeshop.models.Bicycle
 import com.example.bikeshop.viewmodels.DisplayBasketViewModel
 
-class DisplayBasketFragment : Fragment()
-{
-    private val viewModel : DisplayBasketViewModel by viewModels{
+class DisplayBasketFragment : Fragment() {
+    private val viewModel: DisplayBasketViewModel by viewModels {
         DisplayBasketViewModel.DisplayBasketViewModelFactory()
     }
-    private var _binding : DisplayBasketFragmentBinding? = null
+    private var _binding: DisplayBasketFragmentBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,28 +31,39 @@ class DisplayBasketFragment : Fragment()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerView()
+        observeAllBasketItems()
+        updateTotalPrice()
+
     }
 
-    private fun setupRecyclerView()
+    private fun observeAllBasketItems()
     {
-        setupAdapter()
+        viewModel.allBasketItems.observe(this.viewLifecycleOwner){
+            setupRecyclerView(it)
+            updateTotalPrice()
+        }
+    }
+    private fun setupRecyclerView(bicycles : List<Bicycle>) {
+        setupAdapter(bicycles)
         setupLayoutManager()
     }
 
-    private fun setupAdapter()
-    {
-        val adapter = DisplayBasketAdapter(getAllBicyclesFromBasket().value!!)
+    private fun setupAdapter(bicycles : List<Bicycle>) {
+        val adapter = DisplayBasketAdapter(bicycles)
         _binding!!.displayBasketRecyclerview.adapter = adapter
     }
-    private fun getAllBicyclesFromBasket() : MutableLiveData<MutableList<Bicycle>>
-    {
-        return viewModel.allBicycles
-    }
-    private fun setupLayoutManager()
-    {
+
+
+    private fun setupLayoutManager() {
         val layoutManager = LinearLayoutManager(context)
         _binding!!.displayBasketRecyclerview.layoutManager = layoutManager
     }
-
+    private fun updateTotalPrice()
+    {
+        _binding!!.totalPrice.text = getTotalPrice().toString()
+    }
+    fun getTotalPrice() : Int
+    {
+        return viewModel.getTotalPrice()
+    }
 }

@@ -3,4 +3,5 @@
     <string name="name_label">Name</string>
     <string name="brand_label">Brand</string>
     <string name="price_label">Price</string>
+    <string name="total_price_label">Total price:</string>
 </resources>

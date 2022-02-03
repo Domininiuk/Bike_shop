@@ -9,6 +9,8 @@ object Basket
     var bicyclesAddedToBasket = MutableLiveData(mutableListOf<Bicycle>())
 
 
+    // If a bicycle is already in the basket,
+    // simply increment the quantity by 1
 
     fun addToBasket(bike : Bicycle)
     {

@@ -1,9 +1,7 @@
 package com.example.bikeshop.viewmodels
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.bikeshop.models.Bicycle
 import com.example.bikeshop.singletons.Basket
 import java.lang.IllegalArgumentException
 
@@ -11,8 +9,32 @@ class DisplayBasketViewModel : ViewModel()
 {
     val basket = Basket
 
-    val allBicycles = basket.bicyclesAddedToBasket
+    val allBasketItems = basket.bicyclesAddedToBasket
+    private var totalPrice : Int = 0
 
+
+    fun getTotalPrice() : Int
+    {
+        calculateTotalPrice()
+        return totalPrice
+    }
+    private fun calculateTotalPrice()
+    {
+        resetTotalPrice()
+        summarizeTotalPrice()
+
+    }
+    private fun resetTotalPrice()
+    {
+        totalPrice = 0
+    }
+    private fun summarizeTotalPrice()
+    {
+        for(bicycle in allBasketItems.value!!)
+        {
+            totalPrice += bicycle.price
+        }
+    }
 
     fun removeBicycleFromBasket()
     {

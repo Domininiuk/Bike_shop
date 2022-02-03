@@ -6,12 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bikeshop.adapters.DisplayBicyclesAdapter
 import com.example.bikeshop.database.BicycleApplication
-import com.example.bikeshop.database.BicycleRoomDatabase
 import com.example.bikeshop.databinding.DisplayBicyclesFragmentBinding
 import com.example.bikeshop.models.Bicycle
 import com.example.bikeshop.viewmodels.DisplayBicyclesViewModel
@@ -21,7 +19,7 @@ class DisplayBicyclesFragment : Fragment()
 {
 
     private val viewModel : DisplayBicyclesViewModel by viewModels{
-        DisplayBicyclesViewModelFactory((requireActivity().application as BicycleApplication).repository)
+        DisplayBicyclesViewModelFactory((requireActivity().application as BicycleApplication).bicycleRepository)
     }
     private var _binding : DisplayBicyclesFragmentBinding? = null
     private val binding get() = _binding!!
@@ -40,8 +38,9 @@ class DisplayBicyclesFragment : Fragment()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observeAllBicycles()
+
         createShoppingCartButtonListener()
+        observeAllBicycles()
     }
 
     private fun createShoppingCartButtonListener()

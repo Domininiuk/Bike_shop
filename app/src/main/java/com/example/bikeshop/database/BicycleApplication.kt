@@ -8,5 +8,6 @@ class BicycleApplication : Application(){
     val applicationScope = CoroutineScope(SupervisorJob())
 
     val database by lazy {BicycleRoomDatabase.getDatabase(this, applicationScope)}
-    val repository by lazy {BicycleRepository(database.BicycleDao())}
+    val bicycleRepository by lazy {BicycleRepository(database.BicycleDao())}
+
 }
