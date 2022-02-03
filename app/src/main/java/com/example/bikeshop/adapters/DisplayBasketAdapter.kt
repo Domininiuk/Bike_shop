@@ -3,31 +3,30 @@ package com.example.bikeshop.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.ui.layout.Layout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bikeshop.R
+import com.example.bikeshop.databinding.DisplayBasketRecyclerviewItemBinding
 import com.example.bikeshop.databinding.DisplayBicyclesRecyclerviewItemBinding
 import com.example.bikeshop.models.Bicycle
-import com.example.bikeshop.singletons.Basket
 
-class DisplayBicyclesAdapter(private val bicycles : List<Bicycle>) : RecyclerView.Adapter<DisplayBicyclesAdapter.BicycleViewHolder>()
-{
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BicycleViewHolder {
+class DisplayBasketAdapter(private val bicycles : List<Bicycle>) : RecyclerView.Adapter<DisplayBasketAdapter.BasketItemViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BasketItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.display_bicycles_recyclerview_item,
-            parent,false)
-        return BicycleViewHolder(view)
+        parent, false)
+        return BasketItemViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: BicycleViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BasketItemViewHolder, position: Int) {
         holder.bind(bicycles[position])
     }
 
     override fun getItemCount(): Int {
         return bicycles.count()
     }
-
-    class BicycleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-    {
-        private var _binding = DisplayBicyclesRecyclerviewItemBinding.bind(itemView)
+    class BasketItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private var _binding = DisplayBasketRecyclerviewItemBinding.bind(itemView)
         private lateinit var bicycle : Bicycle
         fun bind(bicycle: Bicycle)
         {
@@ -36,7 +35,6 @@ class DisplayBicyclesAdapter(private val bicycles : List<Bicycle>) : RecyclerVie
             setBrand(bicycle.brand)
             setColour(bicycle.colour)
             setPrice(bicycle.price)
-            createAddToCartButtonListener()
         }
 
         private fun setName(name : String)
@@ -55,19 +53,6 @@ class DisplayBicyclesAdapter(private val bicycles : List<Bicycle>) : RecyclerVie
         {
             _binding.price.text = price.toString() + " zł"
         }
-
-        private fun createAddToCartButtonListener()
-        {
-            _binding.addToCartButton.setOnClickListener {
-                addBicycleToCart()
-            }
-        }
-        private fun addBicycleToCart()
-        {
-            Basket.addToBasket(bicycle)
-        }
-
     }
-
 
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bikeshop.adapters.DisplayBicyclesAdapter
 import com.example.bikeshop.database.BicycleApplication
@@ -40,17 +41,28 @@ class DisplayBicyclesFragment : Fragment()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeAllBicycles()
-
+        createShoppingCartButtonListener()
     }
 
+    private fun createShoppingCartButtonListener()
+    {
+        _binding!!.shoppingCartButton.setOnClickListener {
+            navigateToBasketFragment()
+        }
+    }
+    private fun navigateToBasketFragment()
+    {
+        val action = DisplayBicyclesFragmentDirections.actionDisplayBicyclesFragmentToDisplayBasketFragment()
+        findNavController().navigate(action)
+    }
     private fun observeAllBicycles()
     {
         viewModel.allBikes.observe(this.viewLifecycleOwner) {
-            setupRecyclerview(it)
+            setupRecyclerView(it)
         }
     }
 
-    private fun setupRecyclerview(bicycles : List<Bicycle>)
+    private fun setupRecyclerView(bicycles : List<Bicycle>)
     {
         setupAdapter(bicycles)
         setupLayoutManager()
@@ -66,4 +78,7 @@ class DisplayBicyclesFragment : Fragment()
         val layoutManager = LinearLayoutManager(context)
         _binding!!.displayBicyclesRecyclerview.layoutManager = layoutManager
     }
+
+
+
 }

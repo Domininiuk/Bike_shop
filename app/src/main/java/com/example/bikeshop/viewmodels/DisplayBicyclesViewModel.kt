@@ -6,12 +6,15 @@ import com.example.bikeshop.models.Bicycle
 import com.example.bikeshop.singletons.Basket
 import java.lang.IllegalArgumentException
 
-class DisplayBicyclesViewModel(private val repository : BicycleRepository) : ViewModel() {
+class DisplayBicyclesViewModel(repository : BicycleRepository) : ViewModel() {
 
     var allBikes : LiveData<List<Bicycle>> = repository.allBikes.asLiveData()
-    var allBikesObserver = Observer<List<Bicycle>>{ it
 
+    var basket = Basket
 
+    fun addBikeToBasket(bicycle: Bicycle)
+    {
+        basket.addToBasket(bicycle)
     }
 
 }

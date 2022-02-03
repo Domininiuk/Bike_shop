@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app2="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app2:startDestination="@id/displayBicyclesFragment">
     <fragment
         android:id="@+id/displayBicyclesFragment"
         android:name="com.example.bikeshop.fragments.DisplayBicyclesFragment"
-        android:label="DisplayBicyclesFragment" />
+        android:label="DisplayBicyclesFragment" >
+        <action
+            android:id="@+id/action_displayBicyclesFragment_to_displayBasketFragment"
+            app2:destination="@id/displayBasketFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/displayBasketFragment"
+        android:name="com.example.bikeshop.fragments.DisplayBasketFragment"
+        android:label="display_basket_fragment"
+        tools:layout="@layout/display_basket_fragment" />
 </navigation>
