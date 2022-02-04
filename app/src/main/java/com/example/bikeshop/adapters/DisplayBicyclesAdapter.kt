@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bikeshop.R
 import com.example.bikeshop.databinding.DisplayBicyclesRecyclerviewItemBinding
 import com.example.bikeshop.models.Bicycle
-import com.example.bikeshop.singletons.Basket
 
 class DisplayBicyclesAdapter(private val bicycles : List<Bicycle>) : RecyclerView.Adapter<DisplayBicyclesAdapter.BicycleViewHolder>()
 {
+    private lateinit var addToCartButtonListener : AddToCartButtonListener
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BicycleViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.display_bicycles_recyclerview_item,
             parent,false)
-        return BicycleViewHolder(view)
+        return BicycleViewHolder(view, addToCartButtonListener)
     }
 
     override fun onBindViewHolder(holder: BicycleViewHolder, position: Int) {
@@ -25,7 +25,7 @@ class DisplayBicyclesAdapter(private val bicycles : List<Bicycle>) : RecyclerVie
         return bicycles.count()
     }
 
-    class BicycleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    class BicycleViewHolder(itemView: View, val addToCartButtonListener : AddToCartButtonListener  ) : RecyclerView.ViewHolder(itemView)
     {
         private var _binding = DisplayBicyclesRecyclerviewItemBinding.bind(itemView)
         private lateinit var bicycle : Bicycle
@@ -59,15 +59,21 @@ class DisplayBicyclesAdapter(private val bicycles : List<Bicycle>) : RecyclerVie
         private fun createAddToCartButtonListener()
         {
             _binding.addToCartButton.setOnClickListener {
-                addBicycleToCart()
+               addToCartButtonListener.onButtonPressed(bicycle)
             }
         }
-        private fun addBicycleToCart()
-        {
-            Basket.addToBasket(bicycle)
-        }
+
 
     }
 
 
+    interface AddToCartButtonListener
+    {
+        fun onButtonPressed(bicycle: Bicycle)
+    }
+
+    fun setAddCartButtonListener(listener : AddToCartButtonListener)
+    {
+        addToCartButtonListener = listener
+    }
 }

@@ -1,6 +1,17 @@
 package com.example.bikeshop.database
 
-class BasketRepository(bicycleDao: BicycleDao) {
+import com.example.bikeshop.models.BasketItem
+import com.example.bikeshop.models.Bicycle
+import kotlinx.coroutines.flow.Flow
 
-    //val allBasketItems: Flow<>
+class BasketRepository(private val basketDao: BasketDao) {
+
+    val allBasketItems: Flow<List<BasketItem>> = basketDao.getAllBasketItems()
+
+
+    suspend fun insertBasketItem(basketItem: BasketItem)
+    {
+        basketDao.addItemToBasket(basketItem)
+    }
+
 }

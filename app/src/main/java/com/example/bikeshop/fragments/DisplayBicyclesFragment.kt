@@ -15,11 +15,12 @@ import com.example.bikeshop.models.Bicycle
 import com.example.bikeshop.viewmodels.DisplayBicyclesViewModel
 import com.example.bikeshop.viewmodels.DisplayBicyclesViewModelFactory
 
-class DisplayBicyclesFragment : Fragment()
+class DisplayBicyclesFragment : Fragment(), DisplayBicyclesAdapter.AddToCartButtonListener
 {
 
     private val viewModel : DisplayBicyclesViewModel by viewModels{
-        DisplayBicyclesViewModelFactory((requireActivity().application as BicycleApplication).bicycleRepository)
+        DisplayBicyclesViewModelFactory((requireActivity().application as BicycleApplication).bicycleRepository,
+            (requireActivity().application as BicycleApplication).basketRepository)
     }
     private var _binding : DisplayBicyclesFragmentBinding? = null
     private val binding get() = _binding!!
@@ -69,6 +70,7 @@ class DisplayBicyclesFragment : Fragment()
     private fun setupAdapter(bicycles: List<Bicycle>)
     {
         val adapter = DisplayBicyclesAdapter(bicycles)
+        adapter.setAddCartButtonListener(this)
         _binding!!.displayBicyclesRecyclerview.adapter = adapter
 
     }
@@ -78,6 +80,9 @@ class DisplayBicyclesFragment : Fragment()
         _binding!!.displayBicyclesRecyclerview.layoutManager = layoutManager
     }
 
+    override fun onButtonPressed(bicycle: Bicycle) {
+        viewModel.addBikeToBasket(bicycle)
+    }
 
 
 }
