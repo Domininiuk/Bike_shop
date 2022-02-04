@@ -10,11 +10,6 @@ data class Bicycle(@PrimaryKey(autoGenerate = true) val id : Int= 0,
                    val price : Int,
                    val colour : String,
                    val brand : String,
-                   /*
-                   @Ignore
-                   var quantity: Int = 1
-
-                    */
 )
 {
 

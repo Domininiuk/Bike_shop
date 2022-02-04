@@ -4,16 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bikeshop.adapters.DisplayBasketAdapter
 import com.example.bikeshop.database.BicycleApplication
 import com.example.bikeshop.databinding.DisplayBasketFragmentBinding
 import com.example.bikeshop.models.Bicycle
-import com.example.bikeshop.singletons.Basket
 import com.example.bikeshop.viewmodels.DisplayBasketViewModel
 
 class DisplayBasketFragment : Fragment(), DisplayBasketAdapter.RemoveFromCartButtonListener {
@@ -64,9 +61,9 @@ class DisplayBasketFragment : Fragment(), DisplayBasketAdapter.RemoveFromCartBut
     }
     private fun updateTotalPrice()
     {
-        _binding!!.totalPrice.text = getTotalPrice().toString()
+        _binding!!.totalPrice.text = getTotalPrice().toString() + " zł"
     }
-    fun getTotalPrice() : Int
+    private fun getTotalPrice() : Int
     {
         return viewModel.getTotalPrice()
     }
@@ -74,7 +71,7 @@ class DisplayBasketFragment : Fragment(), DisplayBasketAdapter.RemoveFromCartBut
         viewModel.removeBicycleFromBasket(index)
        updateTheBasket(index)
     }
-    fun updateTheBasket(index : Int)
+    private fun updateTheBasket(index : Int)
     {
         _binding!!.displayBasketRecyclerview.adapter?.notifyItemRemoved(index)
         updateTotalPrice()

@@ -10,7 +10,7 @@
         android:layout_height="130dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="18dp"
         app:layout_constraintEnd_toStartOf="@+id/name_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,10 +18,10 @@
 
     <TextView
         android:id="@+id/name_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="21dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="18dp"
         android:text="@string/name_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintEnd_toStartOf="@+id/brand_label"
@@ -29,10 +29,10 @@
 
     <TextView
         android:id="@+id/brand_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="21dp"
         android:layout_marginTop="25dp"
-        android:layout_marginEnd="126dp"
+        android:layout_marginEnd="120dp"
         android:text="@string/brand_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,17 +43,17 @@
         android:layout_width="65dp"
         android:layout_height="21dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="14dp"
-        android:text="Colour"
+        android:layout_marginTop="12dp"
+        android:text="@string/colour_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <TextView
         android:id="@+id/price_label"
-        android:layout_width="75dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="22dp"
+        android:layout_width="65dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="18dp"
         android:layout_marginTop="14dp"
         android:text="@string/price_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -65,19 +65,19 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="30dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toEndOf="@+id/price_label"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/outline_remove_shopping_cart_24" />
 
     <TextView
         android:id="@+id/colour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="65dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -87,22 +87,20 @@
 
     <TextView
         android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="21dp"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="126dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/colour"
-        app:layout_constraintTop_toBottomOf="@+id/price_label" />
+        app:layout_constraintTop_toBottomOf="@+id/price_label"/>
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="21dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="9dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/name_label" />
@@ -110,10 +108,9 @@
     <TextView
         android:id="@+id/brand"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="49dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="452dp"
         android:text="TextView"
         app:layout_constraintEnd_toStartOf="@+id/removeFromCartButton"
         app:layout_constraintStart_toEndOf="@+id/name"

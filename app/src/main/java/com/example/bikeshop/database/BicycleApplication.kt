@@ -5,7 +5,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
 class BicycleApplication : Application(){
-    val applicationScope = CoroutineScope(SupervisorJob())
+    private val applicationScope = CoroutineScope(SupervisorJob())
 
     val database by lazy {BicycleRoomDatabase.getDatabase(this, applicationScope)}
     val bicycleRepository by lazy {BicycleRepository(database.BicycleDao())}

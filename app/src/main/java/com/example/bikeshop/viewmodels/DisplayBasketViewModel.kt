@@ -1,17 +1,13 @@
 package com.example.bikeshop.viewmodels
 
 import androidx.lifecycle.*
-import com.example.bikeshop.adapters.DisplayBasketAdapter
 import com.example.bikeshop.database.BicycleRepository
-import com.example.bikeshop.models.Bicycle
 import com.example.bikeshop.singletons.Basket
-import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
-import java.util.*
 
-class DisplayBasketViewModel(private val bicycleRepository : BicycleRepository) : ViewModel()
+class DisplayBasketViewModel : ViewModel()
 {
-    val basket = Basket
+    private val basket = Basket
 
     val allBasketItems = basket.bicyclesAddedToBasket
     private var totalPrice : Int = 0
@@ -53,7 +49,7 @@ class DisplayBasketViewModel(private val bicycleRepository : BicycleRepository) 
             if(modelClass.isAssignableFrom(DisplayBasketViewModel::class.java))
             {
                 @Suppress("UNCHECKED_CAST")
-                return DisplayBasketViewModel(bicycleRepository) as T
+                return DisplayBasketViewModel() as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }

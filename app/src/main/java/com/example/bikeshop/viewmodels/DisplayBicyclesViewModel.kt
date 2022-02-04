@@ -1,17 +1,18 @@
 package com.example.bikeshop.viewmodels
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
 import com.example.bikeshop.database.BicycleRepository
 import com.example.bikeshop.models.Bicycle
 import com.example.bikeshop.singletons.Basket
-import kotlinx.coroutines.launch
-import java.lang.IllegalArgumentException
 
-class DisplayBicyclesViewModel(private val bicycleRepository : BicycleRepository) : ViewModel() {
+class DisplayBicyclesViewModel(bicycleRepository : BicycleRepository) : ViewModel() {
 
     var allBikes : LiveData<List<Bicycle>> = bicycleRepository.allBikes.asLiveData()
 
-    var basket = Basket
+    private var basket = Basket
 
     fun addBikeToBasket(bicycle: Bicycle)
     {
