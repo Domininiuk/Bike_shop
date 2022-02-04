@@ -1,11 +1,15 @@
 package com.example.bikeshop.viewmodels
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
+import com.example.bikeshop.adapters.DisplayBasketAdapter
+import com.example.bikeshop.database.BicycleRepository
+import com.example.bikeshop.models.Bicycle
 import com.example.bikeshop.singletons.Basket
+import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
+import java.util.*
 
-class DisplayBasketViewModel : ViewModel()
+class DisplayBasketViewModel(private val bicycleRepository : BicycleRepository) : ViewModel()
 {
     val basket = Basket
 
@@ -36,18 +40,20 @@ class DisplayBasketViewModel : ViewModel()
         }
     }
 
-    fun removeBicycleFromBasket()
-    {
 
+
+    fun removeBicycleFromBasket(index : Int)
+    {
+        basket.removeFromBasket(index)
     }
 
-    class DisplayBasketViewModelFactory() : ViewModelProvider.Factory
+    class DisplayBasketViewModelFactory(private val bicycleRepository: BicycleRepository): ViewModelProvider.Factory
     {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if(modelClass.isAssignableFrom(DisplayBasketViewModel::class.java))
             {
                 @Suppress("UNCHECKED_CAST")
-                return DisplayBasketViewModel() as T
+                return DisplayBasketViewModel(bicycleRepository) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }

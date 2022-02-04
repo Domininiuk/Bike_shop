@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toStartOf="@+id/name_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_dialog_alert" />
+        app:srcCompat="@drawable/offroad_bike_3700501" />
 
     <TextView
         android:id="@+id/name_label"
@@ -61,7 +61,7 @@
         app:layout_constraintTop_toBottomOf="@+id/brand" />
 
     <ImageButton
-        android:id="@+id/addToCartButton"
+        android:id="@+id/removeFromCartButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="48dp"
@@ -70,19 +70,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/price_label"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/outline_add_shopping_cart_24" />
+        app:srcCompat="@drawable/outline_remove_shopping_cart_24" />
 
     <TextView
         android:id="@+id/colour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/colour_label" />
+        app:layout_constraintTop_toBottomOf="@+id/colour_label"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/price"
@@ -114,7 +115,7 @@
         android:layout_marginTop="9dp"
         android:layout_marginEnd="49dp"
         android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/addToCartButton"
+        app:layout_constraintEnd_toStartOf="@+id/removeFromCartButton"
         app:layout_constraintStart_toEndOf="@+id/name"
         app:layout_constraintTop_toBottomOf="@+id/brand_label" />
 </androidx.constraintlayout.widget.ConstraintLayout>

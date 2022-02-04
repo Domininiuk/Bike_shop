@@ -4,18 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bikeshop.adapters.DisplayBasketAdapter
+import com.example.bikeshop.database.BicycleApplication
 import com.example.bikeshop.databinding.DisplayBasketFragmentBinding
 import com.example.bikeshop.models.Bicycle
+import com.example.bikeshop.singletons.Basket
 import com.example.bikeshop.viewmodels.DisplayBasketViewModel
 
-class DisplayBasketFragment : Fragment() {
+class DisplayBasketFragment : Fragment(), DisplayBasketAdapter.RemoveFromCartButtonListener {
     private val viewModel: DisplayBasketViewModel by viewModels {
-        DisplayBasketViewModel.DisplayBasketViewModelFactory()
+        DisplayBasketViewModel.DisplayBasketViewModelFactory((requireActivity().application as BicycleApplication).bicycleRepository)
     }
     private var _binding: DisplayBasketFragmentBinding? = null
     private val binding get() = _binding!!
@@ -31,8 +34,8 @@ class DisplayBasketFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        observeAllBasketItems()
-        updateTotalPrice()
+       observeAllBasketItems()
+       updateTotalPrice()
 
     }
 
@@ -50,6 +53,7 @@ class DisplayBasketFragment : Fragment() {
 
     private fun setupAdapter(bicycles : List<Bicycle>) {
         val adapter = DisplayBasketAdapter(bicycles)
+        adapter.setAddCartButtonListener(this)
         _binding!!.displayBasketRecyclerview.adapter = adapter
     }
 
@@ -65,5 +69,14 @@ class DisplayBasketFragment : Fragment() {
     fun getTotalPrice() : Int
     {
         return viewModel.getTotalPrice()
+    }
+    override fun onButtonPressed(index: Int) {
+        viewModel.removeBicycleFromBasket(index)
+       updateTheBasket(index)
+    }
+    fun updateTheBasket(index : Int)
+    {
+        _binding!!.displayBasketRecyclerview.adapter?.notifyItemRemoved(index)
+        updateTotalPrice()
     }
 }

@@ -9,5 +9,4 @@ class BicycleApplication : Application(){
 
     val database by lazy {BicycleRoomDatabase.getDatabase(this, applicationScope)}
     val bicycleRepository by lazy {BicycleRepository(database.BicycleDao())}
-    val basketRepository by lazy{BasketRepository(database.BasketDao())}
 }

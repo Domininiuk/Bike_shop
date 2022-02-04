@@ -9,15 +9,16 @@ object Basket
     var bicyclesAddedToBasket = MutableLiveData(mutableListOf<Bicycle>())
 
 
-    // If a bicycle is already in the basket,
-    // simply increment the quantity by 1
 
     fun addToBasket(bike : Bicycle)
     {
         bicyclesAddedToBasket.value?.add(bike)
     }
-    fun removeFromBasket(bicycle: Bicycle)
+    fun removeFromBasket(index : Int)
     {
-        //bicyclesAddedToBasket.value.removeIf { it == bicycle }
+        if(index >= 0)
+        {
+            bicyclesAddedToBasket.value?.removeAt(index)
+        }
     }
 }

@@ -12,10 +12,11 @@ import com.example.bikeshop.models.Bicycle
 
 class DisplayBasketAdapter(private val bicycles : List<Bicycle>) : RecyclerView.Adapter<DisplayBasketAdapter.BasketItemViewHolder>() {
 
+    lateinit var removeFromCartButtonListener : RemoveFromCartButtonListener
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BasketItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.display_bicycles_recyclerview_item,
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.display_basket_recyclerview_item,
         parent, false)
-        return BasketItemViewHolder(view)
+        return BasketItemViewHolder(view, removeFromCartButtonListener)
     }
 
     override fun onBindViewHolder(holder: BasketItemViewHolder, position: Int) {
@@ -25,7 +26,7 @@ class DisplayBasketAdapter(private val bicycles : List<Bicycle>) : RecyclerView.
     override fun getItemCount(): Int {
         return bicycles.count()
     }
-    class BasketItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class BasketItemViewHolder(itemView: View, val removeFromCartButtonListener: RemoveFromCartButtonListener) : RecyclerView.ViewHolder(itemView) {
         private var _binding = DisplayBasketRecyclerviewItemBinding.bind(itemView)
         private lateinit var bicycle : Bicycle
         fun bind(bicycle: Bicycle)
@@ -35,7 +36,9 @@ class DisplayBasketAdapter(private val bicycles : List<Bicycle>) : RecyclerView.
             setBrand(bicycle.brand)
             setColour(bicycle.colour)
             setPrice(bicycle.price)
+            setRemoveFromCartButtonListener()
         }
+
 
         private fun setName(name : String)
         {
@@ -53,6 +56,25 @@ class DisplayBasketAdapter(private val bicycles : List<Bicycle>) : RecyclerView.
         {
             _binding.price.text = price.toString() + " zł"
         }
+        fun setRemoveFromCartButtonListener()
+        {
+            _binding.removeFromCartButton.setOnClickListener{
+                removeFromCartButtonListener.onButtonPressed(adapterPosition)
+                disableTheButton()
+            }
+        }
+        fun disableTheButton()
+        {
+            _binding.removeFromCartButton.isClickable = false
+        }
     }
 
+    interface RemoveFromCartButtonListener
+    {
+       fun onButtonPressed(index : Int)
+    }
+    fun setAddCartButtonListener(listener : RemoveFromCartButtonListener)
+    {
+        removeFromCartButtonListener = listener
+    }
 }

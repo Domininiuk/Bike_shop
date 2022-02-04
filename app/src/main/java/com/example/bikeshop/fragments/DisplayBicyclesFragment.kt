@@ -19,8 +19,7 @@ class DisplayBicyclesFragment : Fragment(), DisplayBicyclesAdapter.AddToCartButt
 {
 
     private val viewModel : DisplayBicyclesViewModel by viewModels{
-        DisplayBicyclesViewModelFactory((requireActivity().application as BicycleApplication).bicycleRepository,
-            (requireActivity().application as BicycleApplication).basketRepository)
+        DisplayBicyclesViewModelFactory((requireActivity().application as BicycleApplication).bicycleRepository)
     }
     private var _binding : DisplayBicyclesFragmentBinding? = null
     private val binding get() = _binding!!

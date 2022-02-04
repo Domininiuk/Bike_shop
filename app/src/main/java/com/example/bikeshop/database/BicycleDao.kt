@@ -15,4 +15,5 @@ interface BicycleDao
     @Query("SELECT * FROM bicycle_table")
     fun getAllBikes() : Flow<List<Bicycle>>
 
+
 }

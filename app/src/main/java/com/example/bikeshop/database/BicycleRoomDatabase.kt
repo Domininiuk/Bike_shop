@@ -5,17 +5,15 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.bikeshop.models.BasketItem
 import com.example.bikeshop.models.Bicycle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-@Database(entities = [Bicycle::class, BasketItem::class], version = 1, exportSchema = false)
+@Database(entities = [Bicycle::class], version = 1, exportSchema = false)
 abstract class  BicycleRoomDatabase : RoomDatabase() {
     abstract fun BicycleDao(): BicycleDao
-    abstract fun BasketDao() : BasketDao
     companion object
     {
 

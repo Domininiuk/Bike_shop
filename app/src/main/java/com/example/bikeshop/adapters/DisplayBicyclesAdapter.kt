@@ -25,7 +25,7 @@ class DisplayBicyclesAdapter(private val bicycles : List<Bicycle>) : RecyclerVie
         return bicycles.count()
     }
 
-    class BicycleViewHolder(itemView: View, val addToCartButtonListener : AddToCartButtonListener  ) : RecyclerView.ViewHolder(itemView)
+    class BicycleViewHolder(itemView: View, private val addToCartButtonListener : AddToCartButtonListener  ) : RecyclerView.ViewHolder(itemView)
     {
         private var _binding = DisplayBicyclesRecyclerviewItemBinding.bind(itemView)
         private lateinit var bicycle : Bicycle
@@ -36,7 +36,7 @@ class DisplayBicyclesAdapter(private val bicycles : List<Bicycle>) : RecyclerVie
             setBrand(bicycle.brand)
             setColour(bicycle.colour)
             setPrice(bicycle.price)
-            createAddToCartButtonListener()
+            setAddToCartButtonListener()
         }
 
         private fun setName(name : String)
@@ -56,7 +56,7 @@ class DisplayBicyclesAdapter(private val bicycles : List<Bicycle>) : RecyclerVie
             _binding.price.text = price.toString() + " zł"
         }
 
-        private fun createAddToCartButtonListener()
+        private fun setAddToCartButtonListener()
         {
             _binding.addToCartButton.setOnClickListener {
                addToCartButtonListener.onButtonPressed(bicycle)
